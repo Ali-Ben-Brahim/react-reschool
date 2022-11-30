@@ -43,7 +43,7 @@ const[data,setData]=useState([])
       onClick={() => setCreateModalOpen(true)}
       variant='contained'
       color='primary'
-      className={classes.leftSpacing}>
+      >
           
           Créer un établissement
         </Button>

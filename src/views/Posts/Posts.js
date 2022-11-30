@@ -31,20 +31,22 @@ const Posts = () => {
               <Tab label="Poubelles" value="7" />
             </TabList>
         </PageHeader>
-      <PageBody   style={{ display: "flex",width:'100%' }}>
+      <PageBody   style={{ display: "flex"}}>
       <Box
           flexGrow='1'
           width={"100%"}
+          
+         
           flexDirection='column'
           alignItems='center'
           justifyContent='center'
           
           >
-<TabPanel value="1"><Tableetablissement/></TabPanel>
-          <TabPanel  value="4"><Tableblocetab/></TabPanel>
-          <TabPanel value="5"><Tableetage/></TabPanel>
-          <TabPanel value="6"><TableBlocPoubelles/></TabPanel>
-          <TabPanel value="7"><TablePoubelles/></TabPanel>
+<TabPanel sx={{height:"100%"}}  value="1"><Tableetablissement/></TabPanel>
+          <TabPanel sx={{height:"80%"}}   value="4"><Tableblocetab/></TabPanel>
+          <TabPanel sx={{height:"80%"}}  value="5"><Tableetage/></TabPanel>
+          <TabPanel sx={{height:"80%"}}  value="6"><TableBlocPoubelles/></TabPanel>
+          <TabPanel sx={{height:"80%"}}  value="7"><TablePoubelles/></TabPanel>
     
        </Box>
       </PageBody>

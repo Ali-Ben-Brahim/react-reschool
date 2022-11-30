@@ -40,10 +40,12 @@ export const CreateNewStock = ({ open, onClose }) => {
     }
     const handleChange = (event) => {
      
+     
       setformValue({
         ...formValue,
         [event.target.name]: event.target.value
       });
+     
       
     }
     console.log(formValue)
@@ -66,10 +68,10 @@ export const CreateNewStock = ({ open, onClose }) => {
 <Grid xs={12} sm={12} item>
        
        <FormControl fullWidth >
-       <Input id="raised-button-file" style={{display: 'none'}} onChange={handleChange} value={formValue.photo} name="photo" type='File'></Input>
-       <label htmlFor="raised-button-file">
+       <Input accept="image/*" id="photo" style={{display: 'none'}} onChange={handleChange} value={formValue.photo} name="photo" type='File'></Input>
+       <label htmlFor="photo">
          <Button variant="contained" component="span" >
-           Upload
+           Upload image
          </Button>
        </label> 
        </FormControl>
