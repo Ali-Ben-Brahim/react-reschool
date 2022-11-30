@@ -16,7 +16,7 @@ import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "95%",
+    width: "100%",
     margin: "4px auto",
     borderRadius: "8px",
     transition: "all .5s",
@@ -109,9 +109,9 @@ const NavigationItem = ({ item, collapsed }) => {
           </ListItemText>
           {nested &&
             (open ? (
-              <ExpandLess fontSize={collapsed ? "inherit" : "default"} />
+              <ExpandLess fontSize={collapsed ? "inherit" : "medium"} />
             ) : (
-              <ExpandMore fontSize={collapsed ? "inherit" : "default"} />
+              <ExpandMore fontSize={collapsed ? "inherit" : "medium"} />
             ))}
         </Box>
       </ListItem>

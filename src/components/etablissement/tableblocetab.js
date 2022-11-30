@@ -1,5 +1,11 @@
 import React, {  useState,useEffect } from "react";
-import MaterialTable from 'material-table';
+import {
+  DataGrid,
+  GridActionsCellItem,
+  GridRowId,
+  GridToolbar
+  
+} from '@mui/x-data-grid';
 import { ThemeProvider, createTheme,Button } from '@mui/material';
 import axios from 'axios';
 import {makeStyles } from "@material-ui/core";
@@ -10,9 +16,12 @@ export default function Tableblocetab() {
 const[data,setData]=useState([])
 const defaultMaterialTheme = createTheme();
 useEffect(() =>  {
+  let isMounted = false;
+  if (!isMounted){
   axios.get("http://127.0.0.1:8000/api/bloc-etablissement").then(res=> {
     
-    setData(res.data.data)})
+    setData(res.data.data)})}
+    return () => { isMounted = true };
 
   },[])
   const useStyles = makeStyles((theme) => ({
@@ -22,9 +31,17 @@ useEffect(() =>  {
   }));
 
   const classes = useStyles();
+  const columns=React.useMemo(
+    () =>[
+      { headerName: 'Nom d\'établissement', field: 'etablissement' },
+      { headerName: 'Nom du bloc', field: 'nom_bloc_etablissement' },
+      { headerName: 'Nombre d\'étage', field: 'nombre_etage' },,
+    
+
+    ]);
   
   return (
-    <ThemeProvider theme={defaultMaterialTheme}>
+    <>
         <Button
       onClick={() => setCreateModalOpen(true)}
           variant='contained'
@@ -39,8 +56,8 @@ useEffect(() =>  {
         onClose={() => setCreateModalOpen(false)}
        
       />
-                    <MaterialTable 
-                   title="Tous les établissements"
+                    <DataGrid 
+                       components={{ Toolbar: GridToolbar }}
                     actions={[
                       {
                         icon: "edit",
@@ -63,16 +80,11 @@ useEffect(() =>  {
                       actionsColumnIndex: -1
                     }}
                     
-                        columns={[
-                        { title: 'Nom d\'établissement', field: 'etablissement' },
-                        { title: 'Nom du bloc', field: 'nom_bloc_etablissement' },
-                        { title: 'Nombre d\'étage', field: 'nombre_etage' },
-                        
-                        ]}
-                        data={ data}
+                        columns={columns}
+                        rows={ data}
                         
                     />
                    
-                   </ThemeProvider>
+                   </>
   )
 }

@@ -11,8 +11,11 @@ export const CreateNewEtage = ({ open, onClose }) => {
     const[blocetage,setBlocEtage]=useState("")
     const[dataBloc,setDataBloc]=useState([])
     useEffect(() =>  {
+      let isMounted = false;
+      if (!isMounted){  
       axios.get("http://127.0.0.1:8000/api/etablissement").then(res=> setData(res.data.data))
-      
+    }
+    return () => { isMounted = true };
       },
       
       [])

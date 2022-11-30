@@ -5,20 +5,22 @@ import {
   GridRowId,
   GridToolbar
   
-} from '@mui/x-data-grid';import { ThemeProvider, createTheme,Button } from '@mui/material';
+} from '@mui/x-data-grid';
+import { ThemeProvider, createTheme,Button } from '@mui/material';
 import axios from 'axios';
 import {makeStyles } from "@material-ui/core";
 import { CreateNewEtage } from "../dialog/showdialogetage";
 import { CreateNewBlocPoubelles } from "../dialog/showdialogeblocpoubelles";
+import { CreateNewPoubelles } from "../dialog/showdialogpoubelle";
 
-export default function TableBlocPoubelles() {
+export default function TablePoubelles() {
     const [createModalOpen, setCreateModalOpen] = useState(false);
 const[data,setData]=useState([])
+const defaultMaterialTheme = createTheme();
 useEffect(() =>  {
   let isMounted = false;
   if (!isMounted){
-  axios.get("http://127.0.0.1:8000/api/bloc-poubelle-all").then(res=> setData(res.data.data))
-
+  axios.get("http://127.0.0.1:8000/api/poubelle").then(res=> setData(res.data.data))
 }
 return () => { isMounted = true };
   },[])
@@ -27,17 +29,17 @@ return () => { isMounted = true };
       marginRight: theme.spacing(1),
     },
   }));
-
-  const classes = useStyles();
   const columns=React.useMemo(
     () =>[
       { headerName: 'Nom d\'établissement', field: 'etablissement' },
-      { headerName: 'Nom du bloc', field: 'bloc_etabl' },
-      { headerName: 'Nom d\'étage', field: 'etage' },
-      { headerName: 'Nom d\'bloc poubelle', field: 'nom_bloc_poubelle' },
+      { headerName: 'Nom du poubelle', field: 'nom' },
+      { headerName: 'Type', field: 'type' },
+      { headerName: 'Etat', field: 'Etat' },
+      
     
 
     ]);
+  const classes = useStyles();
   return (
     <>
         <Button
@@ -46,9 +48,9 @@ return () => { isMounted = true };
           color="primary"
           className={classes.leftSpacing}>
           
-          Affecter un bloc poubelle 
+          Affecter un poubelle 
         </Button>
-        <CreateNewBlocPoubelles
+        <CreateNewPoubelles
 
         
         open={createModalOpen}
@@ -57,7 +59,7 @@ return () => { isMounted = true };
       />
                     <DataGrid 
                    components={{ Toolbar: GridToolbar }}
-                    actions={[
+                   actions={[
                       {
                         icon: "edit",
                         tooltip: 'Edit ',
@@ -69,7 +71,7 @@ return () => { isMounted = true };
                         tooltip: 'Delete ',
                        
                         onClick: (event, rowData)=> {
-                          axios.get(`http://127.0.0.1:8000/api/bloc-poubelle-suppression-definitif/${rowData.id}`)
+                          axios.get(`http://127.0.0.1:8000/api/poubelle-suppression-definitif/${rowData.id}`)
                           console.log(rowData)
 
                         }

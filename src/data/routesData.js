@@ -22,6 +22,14 @@ export const mainRoutes = [
     component: lazy(() => importView(["Dashboard", 2])),
   },
   {
+    path: `/stock`,
+    component: lazy(() => importView(["stock", 2])),
+  },
+  {
+    path: `/ZoneDeTravail`,
+    component: lazy(() => importView(["ZoneDeTravail",2])),
+  },
+  {
     path: `/posts`,
     component: lazy(() => importView("Posts", "routes")),
     routes: [

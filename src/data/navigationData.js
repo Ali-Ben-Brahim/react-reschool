@@ -3,15 +3,25 @@ import {
   Apartment,
   PeopleAlt,
   Ballot,
-
-  
+  Explore ,
   Edit
 } from "@material-ui/icons";
+import { FaBoxes } from 'react-icons/fa';
 export const mainNavigation = [
   {
     name: "Dashboard",
     icon: Dashboard,
     url: `/dashboard`,
+  },
+  {
+    name: "Stock poubelles",
+    icon: FaBoxes,
+    url: `/stock`,
+  },
+  {
+    name: "Zone de travail",
+    icon: Explore ,
+    url: `/ZoneDeTravail`,
   },
   {
     name: "Établissement",
@@ -28,13 +38,10 @@ export const mainNavigation = [
         icon: Edit,
         url: `/posts/editor`,
       },
-      {
-        name: "Affecter",
-        icon: Edit,
-        url: `/posts/affecter`,
-      },
+      
     ],
   },
+
   {
     name: "Profile",
     icon: PeopleAlt,

@@ -1,9 +1,8 @@
 import React, {  useState,useEffect } from "react";
-
-import { ThemeProvider, createTheme,Button } from '@mui/material';
+import { ThemeProvider, Box,Button } from '@mui/material';
 import axios from 'axios';
 import {makeStyles } from "@material-ui/core";
-import { CreateNewEtage } from "../dialog/showdialogetage";
+import { CreateNewZT } from "../dialog/showdialogZT";
 import {
   DataGrid,
   GridActionsCellItem,
@@ -11,50 +10,59 @@ import {
   GridToolbar
   
 } from '@mui/x-data-grid';
-export default function Tableetage() {
-    const [createModalOpen, setCreateModalOpen] = useState(false);
+import {Delete} from '@mui/icons-material';
+
+const useStyles = makeStyles((theme) => ({
+  leftSpacing: {
+    marginRight: theme.spacing(1),
+    
+  },
+}));
+export default function TableZoneTravail() {
+const [createModalOpen, setCreateModalOpen] = useState(false);
 const[data,setData]=useState([])
-const defaultMaterialTheme = createTheme();
 useEffect(() =>  {
   let isMounted = false;
-  if (!isMounted){
-  axios.get("http://127.0.0.1:8000/api/etage-etablissement").then(res=> setData(res.data.data))
-
+  if (!isMounted){ 
+  axios.get("http://127.0.0.1:8000/api/zone-travail").then(res=> setData(res.data.data))
 }
 return () => { isMounted = true };
   },[])
-  const useStyles = makeStyles((theme) => ({
-    leftSpacing: {
-      marginRight: theme.spacing(1),
-    },
-  }));
-
-  const classes = useStyles();
   const columns=React.useMemo(
     () =>[
-      { headerName: 'Nom d\'établissement', field: 'etablissement' },
-      { headerName: 'Nom du bloc', field: 'bloc_etablissement' },
-      { headerName: 'Nom d\'étage', field: 'nom_etage_etablissement' },
-      
+    { headerName: 'Region', field: 'region',width:300,   getActions: (params) => [
+      <GridActionsCellItem
+        icon={<Delete />}
+        label="Delete"
+         onClick={ axios.get(`http://127.0.0.1:8000/api/zone-travail-suppression-definitif/${params.id}`)}
+      />,
+      ]},
+    
+
     ]);
+
+  const classes = useStyles();
   return (
-    <>
+    <Box width={"100%"} height={"80%"}>
+      
         <Button
       onClick={() => setCreateModalOpen(true)}
           variant='contained'
-          color="primary"
+          color="secondary"
           className={classes.leftSpacing}>
           
-          Affecter un etage 
+          Ajouter zone de travail
         </Button>
-    <CreateNewEtage
+    <CreateNewZT
         
         open={createModalOpen}
         onClose={() => setCreateModalOpen(false)}
        
       />
                     <DataGrid 
-                    components={{ Toolbar: GridToolbar }}
+                  
+                   components={{ Toolbar: GridToolbar }}
+                  
                     actions={[
                       {
                         icon: "edit",
@@ -65,9 +73,9 @@ return () => { isMounted = true };
                       {
                         icon: 'delete',
                         tooltip: 'Delete User',
-                       
+                        
                         onClick: (event, rowData)=> {
-                          axios.get(`http://127.0.0.1:8000/api/etage-etablissement-suppression-definitif/${rowData.id}`)
+                          axios.get(`http://127.0.0.1:8000/api/zone-travail-suppression-definitif/${rowData.id}`)
                           console.log(rowData)
 
                         }
@@ -75,13 +83,13 @@ return () => { isMounted = true };
                     ]}
                     options={{
                       actionsColumnIndex: -1
+                      
                     }}
                     
-                        columns={columns}
+                    columns={columns}
                         rows={data}
                         
                     />
-                   
-                   </>
+                   </Box>
   )
 }

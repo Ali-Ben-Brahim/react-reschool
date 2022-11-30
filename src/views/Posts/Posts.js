@@ -9,6 +9,7 @@ import Tableetablissement from "../../components/etablissement/tableetablissemen
 import Tableblocetab from "../../components/etablissement/tableblocetab";
 import Tableetage from "../../components/etablissement/tableetage";
 import TableBlocPoubelles from "../../components/etablissement/tableblocPoubelles";
+import TablePoubelles from "../../components/etablissement/tablepoubelle";
 
 
 
@@ -16,12 +17,11 @@ const Posts = () => {
   const [value, setValue] = useState('1');
   const handleChange = (event, newValue) => {  setValue(newValue);};
   
-  
   return (
     
     <React.Fragment>
       <TabContext value={value}>
-      <PageHeader >
+      <PageHeader  >
       
       <TabList onChange={handleChange} aria-label="lab API tabs example">
               <Tab label="Établissement" value="1" />
@@ -31,21 +31,22 @@ const Posts = () => {
               <Tab label="Poubelles" value="7" />
             </TabList>
         </PageHeader>
-      <PageBody style={{ display: "flex" }}>
-        <Box
+      <PageBody   style={{ display: "flex",width:'100%' }}>
+      <Box
           flexGrow='1'
-          width='100%'
-          display='flex'
+          width={"100%"}
           flexDirection='column'
           alignItems='center'
-          justifyContent='center'>
+          justifyContent='center'
+          
+          >
 <TabPanel value="1"><Tableetablissement/></TabPanel>
-          <TabPanel value="4"><Tableblocetab/></TabPanel>
+          <TabPanel  value="4"><Tableblocetab/></TabPanel>
           <TabPanel value="5"><Tableetage/></TabPanel>
           <TabPanel value="6"><TableBlocPoubelles/></TabPanel>
-          <TabPanel value="7"></TabPanel>
-        </Box>
-        
+          <TabPanel value="7"><TablePoubelles/></TabPanel>
+    
+       </Box>
       </PageBody>
       </TabContext>
     </React.Fragment>

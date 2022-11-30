@@ -4,34 +4,27 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import React, {  useState,useEffect } from 'react';
 import axios from 'axios';
+import countrydata from './countydata.json';
+import Autocomplete from '@mui/material/Autocomplete';
 import {TextField,FormControl,MenuItem,Select,InputLabel,Button,Grid,Stack  } from '@mui/material';
-export const CreateNewBlocEtab = ({ open, onClose }) => {
-   
-    const[data,setData]=useState([])
-    useEffect(() =>  {
-      let isMounted = false;
-      if (!isMounted){ 
-      axios.get("http://127.0.0.1:8000/api/etablissement").then(res=> setData(res.data.data))
-    }
-    return () => { isMounted = true };
-      },
-      
-      [])
+export const CreateNewZT = ({ open, onClose }) => {
+
+
       const [formValue, setformValue] = React.useState({
       
-        etablissement_id: "",
-        nom_bloc_etablissement: "",
+        region: [],
+      
   
     });
   
       const handleSubmit = async() => {
   
         const blocFormData = new FormData();
-        blocFormData.append("etablissement_id", formValue.etablissement_id)
-        blocFormData.append("nom_bloc_etablissement", formValue.nom_bloc_etablissement)
+        blocFormData.append("region", formValue.region)
+        
        
         console.log(blocFormData)
-        axios.post("http://127.0.0.1:8000/api/bloc-etablissement",blocFormData)
+        axios.post("http://127.0.0.1:8000/api/zone-travail",blocFormData)
         .then((response) => {
        
           
@@ -46,6 +39,7 @@ export const CreateNewBlocEtab = ({ open, onClose }) => {
       });
       
     }
+    console.log(formValue)
     return (
       <Dialog open={open}>
         <DialogTitle textAlign="center">Créer un bloc d'établissement</DialogTitle>
@@ -64,31 +58,34 @@ export const CreateNewBlocEtab = ({ open, onClose }) => {
 <Grid container spacing={1}> 
 <Grid xs={12} sm={12} item>
        
-<FormControl fullWidth >
-<InputLabel  id="demo-simple-select-label">Nom de l'etablisement</InputLabel>
-<Select 
-labelId="etablissement_id"
-id="etablissement_id"
-onChange={handleChange}
-label="Nom du l'établissement"
-value={formValue.etablissement_id}
-name="etablissement_id"
->
-{data.map((e,i)=><MenuItem key={i} value={e.id}>{e.nom_etablissement}</MenuItem>) }
 
-
-</Select>
-</FormControl>
-</Grid>
-<Grid xs={12} sm={12} item>
-<TextField
-fullWidth
+<Autocomplete 
+labelId="region"
+id="region"
+options={countrydata}
+getOptionLabel={(option) => option.state_name}
 onChange={handleChange}
-label={"Nom du bloc de l'établissement"} 
-name="nom_bloc_etablissement"
-value={formValue.nom_bloc_etablissement}
+
+filterSelectedOptions
+name="region"
+multiple
+renderInput={(params) => (
+  <TextField
+    {...params}
+    label="Select region"
+    placeholder="region"
+    value={formValue.region}
+
+  />
+)}
 />
+
+
+
+
+
 </Grid>
+
 
 
 
@@ -103,7 +100,7 @@ value={formValue.nom_bloc_etablissement}
         <DialogActions sx={{ p: '1.25rem' }}>
           <Button onClick={onClose}>Annuler</Button>
           <Button color="primary" onClick={handleSubmit} variant="contained">
-          Créer un bloc d'établissement
+          Ajouter Zone de travail
           </Button>
         </DialogActions>
       </Dialog>

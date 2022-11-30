@@ -291,7 +291,7 @@ export const CreateNewAccountModal = ({ open, onClose }) => {
    </Grid>
    <Grid xs={12} sm={6} item>   
      <FormControl fullWidth >
-   <InputLabel key={1} id="demo-simple-select-label">Type établissement</InputLabel>
+   <InputLabel id="demo-simple-select-label">Type établissement</InputLabel>
    <Select 
    labelId="type_etablissement"
    id="type_etablissement"

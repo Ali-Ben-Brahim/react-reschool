@@ -172,7 +172,9 @@ const MainLayout = ({ themeConfig, navigationData, children }) => {
   };
 
   React.useEffect(() => {
-    history.listen(() => setMobileOpen(false));
+    let isMounted = false;
+    if (!isMounted){
+    history.listen(() => setMobileOpen(false));}return () => { isMounted = true };
   }, [history]);
 
   const drawer = (

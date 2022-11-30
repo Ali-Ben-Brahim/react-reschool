@@ -872,7 +872,8 @@
     {"localite_id":"721","localite_name":"NOUVELLE MEDINA","code_postal":"2063","city_id":"262"}
    ]}
 
-   ]},
+   ]}
+   ,
    {"state_id":"4","state_name":"Binzart",
    "city":[
     {"city_id":"37","city_name":"MENZEL BOURGUIBA","state_id":"4",
