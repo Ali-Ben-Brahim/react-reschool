@@ -4,9 +4,14 @@ import {
   PeopleAlt,
   Ballot,
   Explore ,
-  Edit
+  Edit,
 } from "@material-ui/icons";
-import { FaBoxes } from 'react-icons/fa';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import PinDropIcon from '@mui/icons-material/PinDrop';
+
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+
+import WarehouseIcon from '@mui/icons-material/Warehouse';
 export const mainNavigation = [
   {
     name: "Dashboard",
@@ -15,13 +20,23 @@ export const mainNavigation = [
   },
   {
     name: "Stock poubelles",
-    icon: FaBoxes,
+    icon: WarehouseIcon,
     url: `/stock`,
   },
   {
     name: "Zone de travail",
     icon: Explore ,
     url: `/ZoneDeTravail`,
+  },
+  {
+    name: "Zone de dépôt",
+    icon: PinDropIcon ,
+    url: `/ZoneDepot`,
+  },
+  {
+    name: "Camion",
+    icon: LocalShippingIcon ,
+    url: `/Camion`,
   },
   {
     name: "Établissement",
@@ -37,6 +52,23 @@ export const mainNavigation = [
         name: "Gestion d'établissement",
         icon: Edit,
         url: `/posts/editor`,
+      },
+      
+    ],
+  },{
+    name: "Personnels",
+    icon: PersonAddIcon,
+    url: `/person`,
+    navigationData: [
+      {
+        name: "Tous les établissements",
+        icon: Ballot,
+        url: `/person/ouvrier`,
+      },
+      {
+        name: "Gestion d'établissement",
+        icon: Edit,
+        url: `/person/respetab`,
       },
       
     ],

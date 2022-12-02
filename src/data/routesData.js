@@ -30,6 +30,14 @@ export const mainRoutes = [
     component: lazy(() => importView(["ZoneDeTravail",2])),
   },
   {
+    path: `/ZoneDepot`,
+    component: lazy(() => importView(["ZoneDepot",2])),
+  },
+  {
+    path: `/Camion`,
+    component: lazy(() => importView(["Camion",2])),
+  },
+  {
     path: `/posts`,
     component: lazy(() => importView("Posts", "routes")),
     routes: [

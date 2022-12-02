@@ -1,6 +1,6 @@
 import React from "react";
-import { Box,Typography } from "@material-ui/core";
-import { PageBody, PageHeader } from "../../components";
+import { Box } from "@material-ui/core";
+import { PageBody } from "../../components";
 import TableStockPoubelles from "../../components/stock poubelles/stock-poubelle";
 const Stock = () => {
   

@@ -19,7 +19,7 @@ export const Employe = (props) => (
         
         sx={{ justifyContent: 'space-between' }}
       >
-      <Grid  item xs={2} sm={2} md={4}>
+      <Grid  item xs={4} sm={4} md={4}>
         <Box  flexGrow='1'
           width='100%'
           display='flex'
@@ -31,7 +31,8 @@ export const Employe = (props) => (
             gutterBottom
             variant="overline"
             align='center'
-          
+            noWrap fontSize={{ xs: '12px',xl:'8.6px', sm: '8.6px', md: '8.6px',lg:'8.6px' }}
+            
           >
             {props.title1}
           </Typography>
@@ -51,7 +52,7 @@ export const Employe = (props) => (
           </Typography>
           </Box>
         </Grid>
-        <Grid  item xs={2} sm={2} md={4}>
+        <Grid  item xs={4} sm={4} md={4}>
         <Box  flexGrow='1'
           width='100%'
           display='flex'
@@ -63,7 +64,7 @@ export const Employe = (props) => (
             gutterBottom
             variant="overline"
             align='center'
-          
+            noWrap fontSize={{ xs: '12px',xl:'8.6px', sm: '8.6px', md: '8.6px',lg:'8.6px' }}
           >
           
           
@@ -85,7 +86,7 @@ export const Employe = (props) => (
           </Typography>
           </Box>
         </Grid>
-        <Grid  item xs={2} sm={2} md={4}>
+        <Grid  item xs={4} sm={4} md={4}>
         <Box  flexGrow='1'
           width='100%'
           display='flex'
@@ -97,6 +98,8 @@ export const Employe = (props) => (
             gutterBottom
             variant="overline"
             align='center'
+            noWrap fontSize={{ xs: '12px',xl:'8.6px', sm: '8.6px', md: '8.6px',lg:'8.6px' }}
+            
           >
             {props.title3}
           </Typography>
@@ -116,7 +119,7 @@ export const Employe = (props) => (
           </Typography>
           </Box>
         </Grid>
-        <Grid  item xs={2} sm={2} md={4}>
+        <Grid  item xs={4} sm={4} md={4}>
         <Box  flexGrow='1'
           width='100%'
           display='flex'
@@ -127,7 +130,8 @@ export const Employe = (props) => (
             color="textPrimary"
             gutterBottom
             variant="overline"
-            align='center'
+            align='center' 
+            noWrap fontSize={{ xs: '12px',xl:'8.6px', sm: '8.6px', md: '8.6px',lg:'8.6px' }}
           >
            {props.title4}
           </Typography>
@@ -147,7 +151,7 @@ export const Employe = (props) => (
           </Typography>
           </Box>
         </Grid>
-        <Grid  item xs={2} sm={2} md={4}>
+        <Grid  item xs={4} sm={4} md={4}>
         <Box  flexGrow='1'
           width='100%'
           display='flex'
@@ -159,6 +163,11 @@ export const Employe = (props) => (
             gutterBottom
             variant="overline"
             align='center'
+            noWrap fontSize={{ xs: '12px',xl:'8.6px', sm: '8.6px', md: '8.6px',lg:'8.6px' }}
+             lg={4}
+            md={12}
+            xl={3}
+            xs={12}
           >
             {props.title5}
           </Typography>
@@ -178,7 +187,7 @@ export const Employe = (props) => (
           </Typography>
           </Box>
         </Grid>
-        <Grid  item xs={2} sm={2} md={4}>
+        <Grid  item xs={4} sm={4} md={4}>
         <Box  flexGrow='1'
           width='100%'
           display='flex'
@@ -190,6 +199,7 @@ export const Employe = (props) => (
             gutterBottom
             variant="overline"
             align='center'
+            noWrap fontSize={{ xs: '12px',xl:'8.6px', sm: '8.6px', md: '8.6px',lg:'8.6px' }}
           >
             {props.title6}
           </Typography>

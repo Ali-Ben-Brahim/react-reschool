@@ -3,6 +3,9 @@ import { ThemeProvider, Box,Button } from '@mui/material';
 import axios from 'axios';
 import {makeStyles } from "@material-ui/core";
 import { CreateNewZT } from "../dialog/showdialogZT";
+
+import EditIcon from '@mui/icons-material/Edit';
+  import DeleteIcon from '@mui/icons-material/Delete';
 import {
   DataGrid,
   GridActionsCellItem,
@@ -10,7 +13,6 @@ import {
   GridToolbar
   
 } from '@mui/x-data-grid';
-import {Delete} from '@mui/icons-material';
 
 const useStyles = makeStyles((theme) => ({
   leftSpacing: {
@@ -30,13 +32,28 @@ return () => { isMounted = true };
   },[])
   const columns=React.useMemo(
     () =>[
-    { headerName: 'Region', field: 'region',width:300,   getActions: (params) => [
-      <GridActionsCellItem
-        icon={<Delete />}
-        label="Delete"
-         onClick={ axios.get(`http://127.0.0.1:8000/api/zone-travail-suppression-definitif/${params.id}`)}
-      />,
-      ]},
+    { headerName: 'Region', field: 'region',width: 350,
+    } , {
+      field: 'actions',
+      type: 'actions',
+      headerName: 'Actions',
+      width: 100,
+      cellClassName: 'actions',
+      getActions: ( params ) => 
+[
+            <GridActionsCellItem
+              icon={<EditIcon />}
+              label="Edit"
+            />,
+            <GridActionsCellItem
+              icon={<DeleteIcon />}
+              label="Delete"
+              color="error"
+              onClick={(event)=> {axios.get(`http://127.0.0.1:8000/api/zone-travail-suppression-definitif/${params.id}`)}}
+
+            />,
+          ]
+},
     
 
     ]);

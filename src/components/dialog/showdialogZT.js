@@ -8,6 +8,7 @@ import countrydata from './countydata.json';
 import Autocomplete from '@mui/material/Autocomplete';
 import {TextField,FormControl,MenuItem,Select,InputLabel,Button,Grid,Stack  } from '@mui/material';
 export const CreateNewZT = ({ open, onClose }) => {
+  const[value,setvalue]=useState([])
 
 
       const [formValue, setformValue] = React.useState({
@@ -20,7 +21,7 @@ export const CreateNewZT = ({ open, onClose }) => {
       const handleSubmit = async() => {
   
         const blocFormData = new FormData();
-        blocFormData.append("region", formValue.region)
+        blocFormData.append("region", value)
         
        
         console.log(blocFormData)
@@ -60,22 +61,21 @@ export const CreateNewZT = ({ open, onClose }) => {
        
 
 <Autocomplete 
-labelId="region"
 id="region"
 options={countrydata}
 getOptionLabel={(option) => option.state_name}
-onChange={handleChange}
-
+onChange={(event, value) => setvalue(value.map((e)=>e.state_name))}
 filterSelectedOptions
 name="region"
+
 multiple
 renderInput={(params) => (
   <TextField
     {...params}
     label="Select region"
     placeholder="region"
-    value={formValue.region}
-
+    value={(option) => option.state_name}
+    name="region"
   />
 )}
 />
